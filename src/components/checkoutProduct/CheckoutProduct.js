@@ -2,7 +2,7 @@ import "./index.scss";
 import checkoutProductImage from "../../assets/icons/checkout_product.svg";
 import checkoutAdd from "../../assets/icons/checkout_add.svg";
 import checkoutSubtract from "../../assets/icons/checkout-.svg";
-import { decreaseCart, add } from "../../features/authSlice";
+import { decreaseCart, add } from "../../features/cartSlice";
 
 import { useDispatch } from "react-redux";
 

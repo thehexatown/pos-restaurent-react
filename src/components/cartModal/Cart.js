@@ -5,10 +5,9 @@ import cartImage from "../../assets/icons/cart.svg";
 import subtractImage from "../../assets/icons/subtract.svg";
 import addImage from "../../assets/icons/plus+.svg";
 import crossImage from "../../assets/icons/cross.svg";
-import { add } from "../../features/authSlice";
+import { add } from "../../features/cartSlice";
 
 const Cart = ({ modalVisibility, product }) => {
-  const cartItems = useSelector((state) => state.auth.cartItems);
   const dispatch = useDispatch();
 
   const [size, setSize] = useState(
