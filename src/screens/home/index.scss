@@ -1,0 +1,22 @@
+.Home {
+  position: relative;
+  width: 1728px;
+  height: 1117px;
+  margin: auto;
+  background: #ffffff;
+
+  .HomeBody {
+    display: flex;
+  }
+  .CartModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 1728px;
+    height: 1117px;
+    top: -4%;
+
+    background: rgb(0, 0, 0, 0.7);
+  }
+}

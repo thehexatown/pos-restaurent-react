@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 44px 33px 45px 68px;
+
+  .HeaderLeft {
+    display: flex;
+    img {
+      margin-right: 50px;
+    }
+    .restaurentDetails {
+      p {
+        font-family: "Keep Calm";
+        font-weight: 500;
+        font-size: 28px;
+        color: #000000;
+        span {
+          font-family: "Khula";
+          font-weight: 400;
+          font-size: 22px;
+          color: #000000;
+        }
+      }
+    }
+  }
+
+  .searchCenter {
+    position: relative;
+    width: 701px;
+    height: 53px;
+
+    input {
+      padding: 14px 0px 14px 31px;
+      box-sizing: border-box;
+      width: 100%;
+      border: 1px solid #e1e1e1;
+      border-radius: 60px;
+      outline: none;
+    }
+    input::placeholder {
+      font-family: "Poppins";
+      font-weight: 400;
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.35);
+    }
+    img {
+      right: 4%;
+      position: absolute;
+      top: 18%;
+    }
+  }
+  .HeaderRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      margin-right: 9px;
+    }
+  }
+}

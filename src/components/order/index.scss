@@ -1,0 +1,111 @@
+.Order {
+  height: 650px;
+  padding: 32px;
+  width: 440px;
+  background: #ffffff;
+  box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  .Heading {
+    p {
+      margin: 0px 0px 35px 12px;
+      font-family: "Keep Calm";
+      font-weight: 500;
+      font-size: 22px;
+
+      color: #000000;
+    }
+  }
+  .CheckoutItem {
+    width: 376px;
+  }
+  .subTotal {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 86px;
+    p {
+      font-family: "Poppins";
+
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+    h5 {
+      font-family: "Poppins";
+      font-weight: 500;
+      font-size: 14px;
+      margin-left: 75px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+  }
+  .Salestax {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    p {
+      font-family: "Poppins";
+
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+    h5 {
+      font-family: "Poppins";
+      font-weight: 500;
+      font-size: 14px;
+      margin-left: 75px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+  }
+  .Total {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    p {
+      font-family: "Poppins";
+
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+    h5 {
+      font-family: "Poppins";
+      font-weight: 600;
+      font-size: 18px;
+      margin-left: 75px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+  }
+  .dottedBorder {
+    border-top: 1px dashed #000000;
+    margin: 25px 0px;
+  }
+
+  button {
+    width: 338px;
+    height: 64px;
+    margin: 58px 51px 38px 51px;
+    outline: none;
+    border: none;
+    background: #f8d123;
+    border-radius: 15px;
+    font-family: "Keep Calm";
+
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height */
+
+    color: #000000;
+  }
+
+  .cartEmpty {
+    font-size: 16px;
+    font-family: "Khula";
+    text-align: center;
+    opacity: 52%;
+  }
+}

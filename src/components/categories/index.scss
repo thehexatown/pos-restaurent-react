@@ -1,0 +1,33 @@
+.Category {
+  width: 1039px;
+  height: 845px;
+  margin-right: 25px;
+  padding: 29px 0px 0px 37px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+
+  background: #ffffff;
+  box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  .CategoryName {
+    font-family: "Keep Calm";
+    font-weight: 500;
+    font-size: 20px;
+    margin: 39px 0px 23px 24px;
+    color: #000000;
+  }
+  .categoryNav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .CategroyBody {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+.Category::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}

@@ -1,0 +1,24 @@
+.Menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 117px;
+  height: 116px;
+  p {
+    margin-top: 10px;
+    font-family: "Keep Calm";
+    font-weight: 500;
+    font-size: 14px;
+
+    color: #000000;
+  }
+}
+
+.Menu:hover {
+  cursor: pointer;
+}
+
+.backgoundColor {
+  background: rgba(250, 209, 27, 0.2);
+}
