@@ -1,11 +1,26 @@
 import "./header.scss";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import brand from "../../assets/icons/pwd_brand.svg";
 import Search from "../../assets/icons/pwd_search.svg";
 import Profile from "../../assets/icons/pwd_profile.svg";
 import drop_Drown from "../../assets/icons/drop_Down.svg";
+import axios from "axios";
+import url from "../../config/url";
 
-const Header = () => {
+const Header = ({ setProducts }) => {
+  const [search, setSearch] = useState("");
+  useEffect(() => {
+    if (search.length) {
+      searchProducts();
+    }
+  }, [search]);
+
+  const searchProducts = async () => {
+    await axios.get(url + `/api/products/search/${search}`).then((res) => {
+      setProducts(res.data.products);
+    });
+  };
+
   return (
     <div className="header">
       <div className="HeaderLeft">
@@ -17,7 +32,11 @@ const Header = () => {
         </div>
       </div>
       <div className="searchCenter">
-        <input placeholder="Search" />
+        <input
+          placeholder="Search"
+          on
+          onChange={(e) => setSearch(e.target.value)}
+        />
         <img src={Search} />
       </div>
       <div className="HeaderRight">

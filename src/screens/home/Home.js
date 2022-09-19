@@ -49,7 +49,7 @@ function Home() {
   return (
     <>
       <div className="Home">
-        <Header />
+        <Header setProducts={setProducts} />
         <div className="HomeBody">
           <SideNav
             currentCategory={currentCategory}

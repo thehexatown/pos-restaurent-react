@@ -55,10 +55,13 @@ export const cartSlice = createSlice({
       total = parseFloat(total.toFixed(2));
       state.cartTotalAmount = total;
     },
+    clearCart(state, action) {
+      state.cartItems = [];
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { add, decreaseCart, getTotals } = cartSlice.actions;
+export const { add, decreaseCart, getTotals, clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
