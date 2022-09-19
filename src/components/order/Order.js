@@ -1,7 +1,10 @@
 import CheckoutItem from "../checkoutProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { getTotals } from "../../features/cartSlice";
+import axios from "axios";
+import url from "../../config/url";
 import "./index.scss";
+import { clearCart } from "../../features/cartSlice";
 import { useEffect, useState } from "react";
 
 const Order = () => {
@@ -12,7 +15,22 @@ const Order = () => {
     dispatch(getTotals());
     console.log(cartItems);
   }, [cartItems, dispatch]);
-
+  const conFirmOrder = async () => {
+    await axios
+      .post(url + "/api/orders", {
+        data: {
+          cartItems: cartItems,
+          Total: Total,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch(clearCart());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="Order">
       <div className="Heading">
@@ -41,7 +59,7 @@ const Order = () => {
             <h5>${Total}</h5>
           </div>
 
-          <button>Confirm Order</button>
+          <button onClick={conFirmOrder}>Confirm Order</button>
         </>
       ) : (
         <div className="cartEmpty">cart is Empty Start Shopping</div>
