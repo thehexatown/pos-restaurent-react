@@ -1,6 +1,6 @@
 import CheckoutItem from "../checkoutProduct";
 import { useDispatch, useSelector } from "react-redux";
-import { getTotals } from "../../features/authSlice";
+import { getTotals } from "../../features/cartSlice";
 import "./index.scss";
 import { useEffect, useState } from "react";
 
@@ -10,6 +10,7 @@ const Order = () => {
   const Total = useSelector((state) => state.auth.cartTotalAmount);
   useEffect(() => {
     dispatch(getTotals());
+    console.log(cartItems);
   }, [cartItems, dispatch]);
 
   return (
@@ -20,9 +21,11 @@ const Order = () => {
 
       {cartItems.length > 0 ? (
         <>
-          {cartItems.map((Item, index) => {
-            return <CheckoutItem Item={Item} key={index} />;
-          })}
+          <div className="cartItems">
+            {cartItems.map((Item, index) => {
+              return <CheckoutItem Item={Item} key={index} />;
+            })}
+          </div>
 
           <div className="subTotal">
             <p>Subtotal</p>
