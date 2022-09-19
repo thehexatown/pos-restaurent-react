@@ -16,9 +16,11 @@ const Header = ({ setProducts }) => {
   }, [search]);
 
   const searchProducts = async () => {
-    await axios.get(url + `/api/products/search/${search}`).then((res) => {
-      setProducts(res.data.products);
-    });
+    await axios
+      .get(url + `/api/products/search?search=${search}`)
+      .then((res) => {
+        setProducts(res.data.products);
+      });
   };
 
   return (
