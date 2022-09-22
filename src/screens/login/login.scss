@@ -1,0 +1,81 @@
+.container {
+  height: 850px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Login {
+  height: 500px;
+  width: 700px;
+  font-family: "Lato";
+  background-color: #f3f3f3;
+}
+
+.brand {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.loginFOrm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+.input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.input > input {
+  display: flex;
+  flex-direction: column;
+  width: 399px;
+  height: 48px;
+  box-sizing: border-box;
+  border: 1px solid #f8d123;
+  padding: 15px 15px;
+  border-radius: 5px;
+}
+.input > label {
+  color: rgba(0, 0, 0, 0.45);
+  margin-bottom: 10px;
+}
+.forgotPassword {
+  display: flex;
+  flex-direction: column;
+  width: 399px;
+  height: 48px;
+  font-weight: bold;
+  color: #36083e;
+}
+.loginFOrm > button {
+  margin-top: 20px;
+  width: 398px;
+  height: 48px;
+  background: #f8d123;
+  border-radius: 5px;
+  border: none;
+  color: #000;
+}
+.signUpLink > p {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  margin-top: 15px;
+  font-weight: 400;
+}
+.signUpLink > p > span {
+  cursor: pointer;
+  font-weight: 800;
+}
+.error {
+  color: red;
+}
