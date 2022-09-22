@@ -7,6 +7,8 @@ import axios from "axios";
 import url from "../../config/url";
 import Cart from "../../components/cartModal";
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Home() {
   const [modalVisibility, setModalVisibility] = useState(false);
   const [products, setProducts] = useState([]);
@@ -49,7 +51,7 @@ function Home() {
   return (
     <>
       <div className="Home">
-        <Header setProducts={setProducts} />
+        <Header setProducts={setProducts} getAllProducts={getAllProducts} />
         <div className="HomeBody">
           <SideNav
             currentCategory={currentCategory}
@@ -75,6 +77,7 @@ function Home() {
           </div>
         )}
       </div>
+      <ToastContainer />
     </>
   );
 }

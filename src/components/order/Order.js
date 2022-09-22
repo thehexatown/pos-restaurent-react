@@ -6,14 +6,15 @@ import url from "../../config/url";
 import "./index.scss";
 import { clearCart } from "../../features/cartSlice";
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 const Order = () => {
+  const notify = () => toast("Order Confirmed");
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.auth.cartItems);
   const Total = useSelector((state) => state.auth.cartTotalAmount);
   useEffect(() => {
     dispatch(getTotals());
-    console.log(cartItems);
   }, [cartItems, dispatch]);
   const conFirmOrder = async () => {
     await axios
@@ -24,12 +25,10 @@ const Order = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         dispatch(clearCart());
+        notify();
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
   return (
     <div className="Order">

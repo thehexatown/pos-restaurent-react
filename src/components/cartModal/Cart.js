@@ -6,8 +6,10 @@ import subtractImage from "../../assets/icons/subtract.svg";
 import addImage from "../../assets/icons/plus+.svg";
 import crossImage from "../../assets/icons/cross.svg";
 import { add } from "../../features/cartSlice";
+import { ToastContainer, toast } from "react-toastify";
 
 const Cart = ({ modalVisibility, product }) => {
+  const notify = () => toast("Added");
   const dispatch = useDispatch();
 
   const [size, setSize] = useState(
@@ -62,7 +64,9 @@ const Cart = ({ modalVisibility, product }) => {
     };
 
     dispatch(add(cartItem));
+    notify();
     setQuantity(1);
+
     modalVisibility(false);
   };
 

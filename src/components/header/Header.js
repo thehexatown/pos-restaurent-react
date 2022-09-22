@@ -7,20 +7,20 @@ import drop_Drown from "../../assets/icons/drop_Down.svg";
 import axios from "axios";
 import url from "../../config/url";
 
-const Header = ({ setProducts }) => {
+const Header = ({ setProducts, getAllProducts }) => {
   const [search, setSearch] = useState("");
   useEffect(() => {
     if (search.length) {
       searchProducts();
+    } else {
+      getAllProducts();
     }
   }, [search]);
 
   const searchProducts = async () => {
-    await axios
-      .get(url + `/api/products/search?search=${search}`)
-      .then((res) => {
-        setProducts(res.data.products);
-      });
+    await axios.get(url + `/api/products/search/${search}`).then((res) => {
+      setProducts(res.data.products);
+    });
   };
 
   return (
@@ -36,7 +36,6 @@ const Header = ({ setProducts }) => {
       <div className="searchCenter">
         <input
           placeholder="Search"
-          on
           onChange={(e) => setSearch(e.target.value)}
         />
         <img src={Search} />
