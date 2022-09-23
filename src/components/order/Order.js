@@ -5,18 +5,25 @@ import axios from "axios";
 import url from "../../config/url";
 import "./index.scss";
 import { clearCart } from "../../features/cartSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Order = () => {
   const token = useSelector((state) => state.login.token);
+  const [tax, setTax] = useState(0);
   const notify = () => toast("Order Confirmed");
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.auth.cartItems);
   const Total = useSelector((state) => state.auth.cartTotalAmount);
+  const [GranTotal, setGrandTotal] = useState(0);
   useEffect(() => {
     dispatch(getTotals());
   }, [cartItems, dispatch]);
+  useEffect(() => {
+    dispatch(getTotals());
+    setGrandTotal(Total);
+  }, [Total]);
+
   useEffect(() => {
     dispatch(getTotals());
   }, [cartItems, dispatch]);
@@ -27,7 +34,7 @@ const Order = () => {
         {
           data: {
             cartItems: cartItems,
-            Total: Total,
+            Total: GranTotal + (Total / 100) * 15,
           },
         },
         {
@@ -58,16 +65,16 @@ const Order = () => {
 
           <div className="subTotal">
             <p>Subtotal</p>
-            <h5>$20.99</h5>
+            <h5>${Total}</h5>
           </div>
           <div className="Salestax">
             <p>Sales tax</p>
-            <h5>$4.99</h5>
+            <h5>${((Total / 100) * 15).toFixed(2)}</h5>
           </div>
           <div className="dottedBorder"></div>
           <div className="Total">
             <p>Total</p>
-            <h5>${Total}</h5>
+            <h5>${(GranTotal + (Total / 100) * 15).toFixed(2)}</h5>
           </div>
 
           <button onClick={conFirmOrder}>Confirm Order</button>

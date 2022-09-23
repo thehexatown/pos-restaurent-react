@@ -15,8 +15,7 @@ export const cartSlice = createSlice({
       if (existingIndex >= 0) {
         state.cartItems[existingIndex] = {
           ...state.cartItems[existingIndex],
-          quantity:
-            state.cartItems[existingIndex].quantity + action.payload.quantity,
+          quantity: state.cartItems[existingIndex].quantity + 1,
         };
       } else {
         let tempProductItem = { ...action.payload };
