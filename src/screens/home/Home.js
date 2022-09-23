@@ -9,7 +9,10 @@ import Cart from "../../components/cartModal";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSelector } from "react-redux";
 function Home() {
+  const token = useSelector((state) => state.login.token);
+  const user = useSelector((state) => state.login.user);
   const [modalVisibility, setModalVisibility] = useState(false);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -20,7 +23,8 @@ function Home() {
   useEffect(() => {
     getAllProducts();
     getAllCategories();
-  }, []);
+    console.log("reduxToken", token, user);
+  }, [token, user]);
 
   useEffect(() => {
     if (currentCategory?.id) {
@@ -31,9 +35,14 @@ function Home() {
   }, [currentCategory]);
 
   const getAllProducts = async () => {
-    await axios.get(url + "/api/products?populate=*").then((res) => {
-      setProducts(res.data.data);
-    });
+    await axios
+      .get(url + `/api/products/organization/${user?.id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log("products====", res.data);
+        setProducts(res.data);
+      });
   };
   const getAllProductsByCategory = async () => {
     await axios
@@ -43,15 +52,22 @@ function Home() {
       });
   };
   const getAllCategories = async () => {
-    await axios.get(url + "/api/categoties").then((res) => {
-      setCategories(res.data.data);
-    });
+    await axios
+      .get(url + `/api/categories/organization/${user?.id}`)
+      .then((res) => {
+        console.log("cat", res.data);
+        setCategories(res.data);
+      });
   };
 
   return (
     <>
       <div className="Home">
-        <Header setProducts={setProducts} getAllProducts={getAllProducts} />
+        <Header
+          Name={user?.username}
+          setProducts={setProducts}
+          getAllProducts={getAllProducts}
+        />
         <div className="HomeBody">
           <SideNav
             currentCategory={currentCategory}

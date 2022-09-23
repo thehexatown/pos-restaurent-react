@@ -6,8 +6,11 @@ import Profile from "../../assets/icons/pwd_profile.svg";
 import drop_Drown from "../../assets/icons/drop_Down.svg";
 import axios from "axios";
 import url from "../../config/url";
+import { useSelector } from "react-redux";
 
-const Header = ({ setProducts, getAllProducts }) => {
+const Header = ({ setProducts, getAllProducts, Name }) => {
+  const user = useSelector((state) => state.login.user);
+  const token = useSelector((state) => state.login.token);
   const [search, setSearch] = useState("");
   useEffect(() => {
     if (search.length) {
@@ -18,9 +21,13 @@ const Header = ({ setProducts, getAllProducts }) => {
   }, [search]);
 
   const searchProducts = async () => {
-    await axios.get(url + `/api/products/search/${search}`).then((res) => {
-      setProducts(res.data.products);
-    });
+    await axios
+      .get(url + `/api/products/search/${user?.id}/${search}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setProducts(res.data.products);
+      });
   };
 
   return (
@@ -29,7 +36,7 @@ const Header = ({ setProducts, getAllProducts }) => {
         <img src={brand} />
         <div className="restaurentDetails">
           <p>
-            PWD - Restaurant <br /> <span>13th September, 2022</span>
+            {Name} <br /> <span>13th September, 2022</span>
           </p>
         </div>
       </div>

@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { SpinnerCircular } from "spinners-react";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import url from "../../config/url";
 // import RequestUrl from "../../config/apiUrl";
-// import { SignIn } from "../../../src/features/authSlice";
+import { login } from "../../../src/features/loginSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -23,32 +24,26 @@ const Login = () => {
     password: Yup.string().required("Password is a required field"),
     // .min(8, "Password must be at least 8 characters"),
   });
-  const submitHandler = async (event) => {
-    //     if (work_email && password && !validated) {
-    //       setLoading(true);
-    //       try {
-    //         await axios
-    //           .post(RequestUrl + "/api/auth/login", {
-    //             work_email,
-    //             password,
-    //           })
-    //           .then((res) => {
-    //             setLoading(false);
-    //             // dispatch(SignIn(res.data.user));
-    //             // navigate("/messenger");
-    //           })
-    //           .catch((error) => {
-    //             setLoading(false);
-    //             console.log(error);
-    //           });
-    //       } catch (error) {
-    //         console.log(error);
-    //       }
-    //     }
-    //   };
-    //   const navigateToSignUp = () => {
-    //     navigate("/signUp");
+  const submitHandler = async (values) => {
+    setLoading(true);
+    await axios
+      .post(url + "/api/auth/local", {
+        identifier: values.email,
+        password: values.password,
+      })
+      .then((res) => {
+        setLoading(false);
+        dispatch(login(res.data));
+        console.log("res", res);
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
   };
+
+  // };
   return (
     <>
       <Formik
@@ -56,7 +51,7 @@ const Login = () => {
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => {
           // Alert the input values of the form that we filled
-          alert(JSON.stringify(values));
+          submitHandler(values);
         }}
       >
         {({
@@ -102,10 +97,7 @@ const Login = () => {
                     </p>
                   </div>
 
-                  <button
-                    type="submit"
-                    // onClick={submitHandler}
-                  >
+                  <button type="submit">
                     {loading == true ? (
                       <SpinnerCircular size="30" color="white" />
                     ) : (

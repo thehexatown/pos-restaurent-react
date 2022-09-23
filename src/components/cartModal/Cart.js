@@ -11,6 +11,9 @@ import { ToastContainer, toast } from "react-toastify";
 const Cart = ({ modalVisibility, product }) => {
   const notify = () => toast("Added");
   const dispatch = useDispatch();
+  useEffect(() => {
+    console.log("exxx", product.extras);
+  }, []);
 
   const [size, setSize] = useState(
     product?.attributes ? product?.attributes.mediumPrice : product.mediumPrice
@@ -140,18 +143,16 @@ const Cart = ({ modalVisibility, product }) => {
             <input type="radio" name="addOn" />
             <p>No add-ons</p>
           </div>
-          {product?.attributes?.extras?.data.map((item) => {
+          {product?.extras?.map((item) => {
             return (
               <div className="radioDiv">
                 <input
                   type="radio"
                   name="addOn"
                   id="item?.attributes?.name"
-                  onChange={() => onExtraChange(item?.attributes?.price)}
+                  onChange={() => onExtraChange(item?.price)}
                 />
-                <p>
-                  {item?.attributes?.name + `($${item?.attributes?.price})`}
-                </p>
+                <p>{item?.name + `($${item?.price})`}</p>
               </div>
             );
           })}

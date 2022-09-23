@@ -11,7 +11,7 @@ const NavItem = ({ category, onClick, currentCategory }) => {
       }
       onClick={onClick}
     >
-      <p>{category ? category.attributes?.name : "All"}</p>
+      <p>{category ? category.name : "All"}</p>
     </div>
   );
 };

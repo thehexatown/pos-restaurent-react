@@ -5,10 +5,11 @@ import axios from "axios";
 import url from "../../config/url";
 import "./index.scss";
 import { clearCart } from "../../features/cartSlice";
-import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Order = () => {
+  const token = useSelector((state) => state.login.token);
   const notify = () => toast("Order Confirmed");
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.auth.cartItems);
@@ -16,19 +17,30 @@ const Order = () => {
   useEffect(() => {
     dispatch(getTotals());
   }, [cartItems, dispatch]);
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cartItems, dispatch]);
   const conFirmOrder = async () => {
     await axios
-      .post(url + "/api/orders", {
-        data: {
-          cartItems: cartItems,
-          Total: Total,
+      .post(
+        url + "/api/orders",
+        {
+          data: {
+            cartItems: cartItems,
+            Total: Total,
+          },
         },
-      })
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
       .then((res) => {
         dispatch(clearCart());
         notify();
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className="Order">

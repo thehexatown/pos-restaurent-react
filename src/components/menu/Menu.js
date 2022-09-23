@@ -11,7 +11,7 @@ const Menu = ({ category, onClick, currentCategory }) => {
       onClick={onClick}
     >
       <img src={SideBarImage} />
-      <p>{category.attributes?.name}</p>
+      <p>{category.name}</p>
     </div>
   );
 };
