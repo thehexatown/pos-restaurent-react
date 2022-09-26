@@ -36,9 +36,7 @@ const Header = ({ setProducts, getAllProducts, Name }) => {
       <div className="HeaderLeft">
         <img src={brand} />
         <div className="restaurentDetails">
-          <p>
-            {Name} <br /> <span>13th September, 2022</span>
-          </p>
+          <p>{organization?.name}</p>
         </div>
       </div>
       <div className="searchCenter">

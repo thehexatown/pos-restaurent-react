@@ -25,7 +25,6 @@ function Home() {
   useEffect(() => {
     getAllProducts();
     getAllCategories();
-    console.log("redux", organization);
   }, [token, user, organization]);
 
   useEffect(() => {
@@ -39,7 +38,7 @@ function Home() {
   const getAllProducts = async () => {
     console.log("id===", organization.id);
     await axios
-      .get(url + `/api/products/organization/2`, {
+      .get(url + `/api/products/organization/${organization?.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {

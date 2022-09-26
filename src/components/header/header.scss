@@ -12,8 +12,10 @@
 
   .HeaderLeft {
     display: flex;
+    justify-content: center;
+    align-items: center;
     img {
-      margin-right: 50px;
+      margin-right: 27px;
     }
     .restaurentDetails {
       p {
