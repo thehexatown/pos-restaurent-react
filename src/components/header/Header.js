@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 
 const Header = ({ setProducts, getAllProducts, Name }) => {
   const user = useSelector((state) => state.login.user);
+  const organization = useSelector((state) => state.login.organization);
   const token = useSelector((state) => state.login.token);
   const [search, setSearch] = useState("");
   useEffect(() => {
@@ -22,7 +23,7 @@ const Header = ({ setProducts, getAllProducts, Name }) => {
 
   const searchProducts = async () => {
     await axios
-      .get(url + `/api/products/search/${user?.id}/${search}`, {
+      .get(url + `/api/products/search/${organization?.id}/${search}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {

@@ -8,15 +8,12 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import url from "../../config/url";
 // import RequestUrl from "../../config/apiUrl";
-import { login } from "../../../src/features/loginSlice";
+import { login, Organization } from "../../../src/features/loginSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
-  const [work_email, setwork_email] = useState("");
   const [loading, setLoading] = useState(false);
-  const [password, setPassword] = useState("");
   const schema = Yup.object().shape({
     email: Yup.string()
       .required("Email is a required field")
@@ -35,6 +32,7 @@ const Login = () => {
         setLoading(false);
         dispatch(login(res.data));
         console.log("res", res);
+        getuserOrganization(res.data.user);
         navigate("/dashboard");
       })
       .catch((error) => {
@@ -42,7 +40,11 @@ const Login = () => {
         console.log(error);
       });
   };
-
+  const getuserOrganization = async (user) => {
+    await axios.get(url + `/api/user/organization/${user?.id}`).then((res) => {
+      dispatch(Organization(res.data.organization));
+    });
+  };
   // };
   return (
     <>

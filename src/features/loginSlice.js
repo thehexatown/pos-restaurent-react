@@ -5,6 +5,7 @@ export const loginSlice = createSlice({
   initialState: {
     token: null,
     user: {},
+    organization: {},
   },
   reducers: {
     login(state, action) {
@@ -12,10 +13,14 @@ export const loginSlice = createSlice({
       state.user = action.payload.user;
       //   state.cartItems = [];
     },
+    Organization(state, action) {
+      state.organization = action.payload;
+      //   state.cartItems = [];
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { login } = loginSlice.actions;
+export const { login, Organization } = loginSlice.actions;
 
 export default loginSlice.reducer;

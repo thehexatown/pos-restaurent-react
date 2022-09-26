@@ -13,7 +13,9 @@ import { useSelector } from "react-redux";
 function Home() {
   const token = useSelector((state) => state.login.token);
   const user = useSelector((state) => state.login.user);
+  const organization = useSelector((state) => state.login.organization);
   const [modalVisibility, setModalVisibility] = useState(false);
+  // const [organization, setOrganization] = useState({});
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -23,8 +25,8 @@ function Home() {
   useEffect(() => {
     getAllProducts();
     getAllCategories();
-    console.log("reduxToken", token, user);
-  }, [token, user]);
+    console.log("redux", organization);
+  }, [token, user, organization]);
 
   useEffect(() => {
     if (currentCategory?.id) {
@@ -35,12 +37,13 @@ function Home() {
   }, [currentCategory]);
 
   const getAllProducts = async () => {
+    console.log("id===", organization.id);
     await axios
-      .get(url + `/api/products/organization/${user?.id}`, {
+      .get(url + `/api/products/organization/2`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("products====", res.data);
+        console.log("products", res.data);
         setProducts(res.data);
       });
   };
@@ -53,9 +56,8 @@ function Home() {
   };
   const getAllCategories = async () => {
     await axios
-      .get(url + `/api/categories/organization/${user?.id}`)
+      .get(url + `/api/categories/organization/${organization?.id}`)
       .then((res) => {
-        console.log("cat", res.data);
         setCategories(res.data);
       });
   };
